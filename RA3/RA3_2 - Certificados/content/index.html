@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>P6 - SSL Seguro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .container {
+            background: white;
+            width: 50%;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .lock {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+        }
+        .status {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .info {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lock">🔒</div>
+        <h1>Conexión Segura Establecida</h1>
+        <p class="status">Certificado SSL Válido</p>
+        
+        <div class="info">
+            <p>Dominio: <b>www.midominioseguro.com</b></p>
+            <p>Protocolo: <b>HTTPS (Puerto 443)</b></p>
+            <p>Base: <i>Apache + ModEvasive (PR4 Heredada)</i></p>
+        </div>
+    </div>
+</body>
+</html>
