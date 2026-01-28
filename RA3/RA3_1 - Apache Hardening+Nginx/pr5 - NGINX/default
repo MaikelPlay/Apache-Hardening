@@ -1,0 +1,39 @@
+server {
+    listen 80;
+    server_name localhost;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    server_tokens off;
+    listen 443 ssl;
+    server_name localhost;
+
+    ssl_certificate /etc/ssl/certs/nginx.crt;
+    ssl_certificate_key /etc/ssl/private/nginx.key;
+
+    # HSTS y CSP
+    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
+    add_header Content-Security-Policy "default-src 'self';" always;
+
+    root /var/www/html;
+    index index.php index.html;
+
+    # WAF ModSecurity
+    modsecurity on;
+    modsecurity_rules_file /etc/nginx/modsec/modsecurity.conf;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location /privado {
+        auth_basic "Acceso Restringido";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+    } 
+}
